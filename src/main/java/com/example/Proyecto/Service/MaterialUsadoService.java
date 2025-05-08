@@ -1,25 +1,22 @@
-package com.example.Proyecto.Controller;
+package com.example.Proyecto.Service;
 
 import com.example.Proyecto.Model.MaterialUsado;
 import com.example.Proyecto.Repository.MaterialUsadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/materialusado")
-public class MaterialUsadoController {
+@Service
+public class MaterialUsadoService {
     @Autowired
     private MaterialUsadoRepository materialUsadoRepository;
 
-    @GetMapping
-    public List<MaterialUsado> getAll() {
+    public List<MaterialUsado> findAll() {
         return materialUsadoRepository.findAll();
     }
 
-    @PostMapping
-    public MaterialUsado create(@RequestBody MaterialUsado materialUsado) {
+    public MaterialUsado save(MaterialUsado materialUsado) {
         return materialUsadoRepository.save(materialUsado);
     }
 }

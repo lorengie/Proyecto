@@ -1,26 +1,22 @@
-package com.example.Proyecto.Controller;
+package com.example.Proyecto.Service;
 
 import com.example.Proyecto.Model.Inventario;
 import com.example.Proyecto.Repository.InventarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/inventario")
-public class InventarioController {
+@Service
+public class InventarioService {
     @Autowired
     private InventarioRepository inventarioRepository;
 
-    @GetMapping
-    public List<Inventario> getAll() {
+    public List<Inventario> findAll() {
         return inventarioRepository.findAll();
     }
 
-    @PostMapping
-    public Inventario create(@RequestBody Inventario inventario) {
+    public Inventario save(Inventario inventario) {
         return inventarioRepository.save(inventario);
     }
-
 }

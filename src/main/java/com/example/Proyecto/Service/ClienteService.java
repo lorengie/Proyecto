@@ -1,25 +1,22 @@
-package com.example.Proyecto.Controller;
+package com.example.Proyecto.Service;
 
 import com.example.Proyecto.Model.Cliente;
 import com.example.Proyecto.Repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/clientes")
-public class ClienteController {
+@Service
+public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    @GetMapping
-    public List<Cliente> getAll() {
+    public List<Cliente> findAll() {
         return clienteRepository.findAll();
     }
 
-    @PostMapping
-    public Cliente create(@RequestBody Cliente cliente) {
+    public Cliente save(Cliente cliente) {
         return clienteRepository.save(cliente);
     }
 }

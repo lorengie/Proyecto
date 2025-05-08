@@ -1,25 +1,23 @@
-package com.example.Proyecto.Controller;
+package com.example.Proyecto.Service;
 
 import com.example.Proyecto.Model.Pago;
 import com.example.Proyecto.Repository.PagoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/pagos")
-public class PagoController {
+@Service
+
+public class PagoService {
     @Autowired
     private PagoRepository pagoRepository;
 
-    @GetMapping
-    public List<Pago> getAll() {
+    public List<Pago> findAll() {
         return pagoRepository.findAll();
     }
 
-    @PostMapping
-    public Pago create(@RequestBody Pago pago) {
+    public Pago save(Pago pago) {
         return pagoRepository.save(pago);
     }
 }
