@@ -11,13 +11,10 @@ import java.util.List;
 
 public class PagoService {
     @Autowired
-    private PagoRepository pagoRepository;
+    private PagoRepository repo;
 
-    public List<Pago> findAll() {
-        return pagoRepository.findAll();
-    }
-
-    public Pago save(Pago pago) {
-        return pagoRepository.save(pago);
-    }
+    public List<Pago> findAll() { return repo.findAll(); }
+    public Pago save(Pago p) { return repo.save(p); }
+    public Pago findById(Long id) { return repo.findById(id).orElse(null); }
+    public void delete(Long id) { repo.deleteById(id); }
 }

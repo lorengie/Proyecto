@@ -10,13 +10,10 @@ import java.util.List;
 @Service
 public class DetallePedidoService {
     @Autowired
-    private DetallePedidoRepository detallePedidoRepository;
+    private DetallePedidoRepository repo;
 
-    public List<DetallePedido> findAll() {
-        return detallePedidoRepository.findAll();
-    }
-
-    public DetallePedido save(DetallePedido detallePedido) {
-        return detallePedidoRepository.save(detallePedido);
-    }
+    public List<DetallePedido> findAll() { return repo.findAll(); }
+    public DetallePedido save(DetallePedido d) { return repo.save(d); }
+    public DetallePedido findById(Long id) { return repo.findById(id).orElse(null); }
+    public void delete(Long id) { repo.deleteById(id); }
 }

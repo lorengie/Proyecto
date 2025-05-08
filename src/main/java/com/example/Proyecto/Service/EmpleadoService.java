@@ -10,13 +10,10 @@ import java.util.List;
 @Service
 public class EmpleadoService {
     @Autowired
-    private EmpleadoRepository empleadoRepository;
+    private EmpleadoRepository repo;
 
-    public List<Empleado> findAll() {
-        return empleadoRepository.findAll();
-    }
-
-    public Empleado save(Empleado empleado) {
-        return empleadoRepository.save(empleado);
-    }
+    public List<Empleado> findAll() { return repo.findAll(); }
+    public Empleado save(Empleado e) { return repo.save(e); }
+    public Empleado findById(Long id) { return repo.findById(id).orElse(null); }
+    public void delete(Long id) { repo.deleteById(id); }
 }

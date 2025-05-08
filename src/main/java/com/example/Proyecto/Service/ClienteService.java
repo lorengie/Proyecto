@@ -12,11 +12,31 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    public List<Cliente> findAll() {
+    public List<Cliente> listarTodos() {
         return clienteRepository.findAll();
     }
 
-    public Cliente save(Cliente cliente) {
+    public Cliente guardar(Cliente cliente) {
         return clienteRepository.save(cliente);
+    }
+
+    public Cliente buscarPorId(Long id) {
+        return clienteRepository.findById(id).orElse(null);
+    }
+
+    public Cliente actualizar(Long id, Cliente clienteNuevo) {
+        Cliente existente = buscarPorId(id);
+        if (existente != null) {
+            existente.setNombre(clienteNuevo.getNombre());
+            existente.setTelefono(clienteNuevo.getTelefono());
+            existente.setDireccion(clienteNuevo.getDireccion());
+            existente.setCorreoElectronico(clienteNuevo.getCorreoElectronico());
+            return clienteRepository.save(existente);
+        }
+        return null;
+    }
+
+    public void eliminar(Long id) {
+        clienteRepository.deleteById(id);
     }
 }

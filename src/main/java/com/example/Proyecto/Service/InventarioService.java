@@ -10,13 +10,10 @@ import java.util.List;
 @Service
 public class InventarioService {
     @Autowired
-    private InventarioRepository inventarioRepository;
+    private InventarioRepository repo;
 
-    public List<Inventario> findAll() {
-        return inventarioRepository.findAll();
-    }
-
-    public Inventario save(Inventario inventario) {
-        return inventarioRepository.save(inventario);
-    }
+    public List<Inventario> findAll() { return repo.findAll(); }
+    public Inventario save(Inventario i) { return repo.save(i); }
+    public Inventario findById(Long id) { return repo.findById(id).orElse(null); }
+    public void delete(Long id) { repo.deleteById(id); }
 }

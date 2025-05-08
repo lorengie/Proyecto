@@ -10,13 +10,10 @@ import java.util.List;
 @Service
 public class MaterialUsadoService {
     @Autowired
-    private MaterialUsadoRepository materialUsadoRepository;
+    private MaterialUsadoRepository repo;
 
-    public List<MaterialUsado> findAll() {
-        return materialUsadoRepository.findAll();
-    }
-
-    public MaterialUsado save(MaterialUsado materialUsado) {
-        return materialUsadoRepository.save(materialUsado);
-    }
+    public List<MaterialUsado> findAll() { return repo.findAll(); }
+    public MaterialUsado save(MaterialUsado m) { return repo.save(m); }
+    public MaterialUsado findById(Long id) { return repo.findById(id).orElse(null); }
+    public void delete(Long id) { repo.deleteById(id); }
 }
