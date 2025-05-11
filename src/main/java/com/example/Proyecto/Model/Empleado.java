@@ -1,5 +1,8 @@
 package com.example.Proyecto.Model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -17,9 +20,12 @@ public class Empleado {
     private String telefono;
 
     @Column(name = "fecha_ingreso")
-    private LocalDate fechaIngreso;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate fecha_ingreso;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "empleado")
+    @JsonManagedReference
     private List<Pedido> pedidos;
 
     public Empleado() {
@@ -30,7 +36,7 @@ public class Empleado {
         this.nombre = nombre;
         this.rol = rol;
         this.telefono = telefono;
-        this.fechaIngreso = fechaIngreso;
+        this.fecha_ingreso = fecha_ingreso;
         this.pedidos = pedidos;
     }
 
@@ -66,12 +72,12 @@ public class Empleado {
         this.telefono = telefono;
     }
 
-    public LocalDate getFechaIngreso() {
-        return fechaIngreso;
+    public LocalDate getfecha_ingreso() {
+        return fecha_ingreso;
     }
 
-    public void setFechaIngreso(LocalDate fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
+    public void setfecha_ingreso(LocalDate fechaIngreso) {
+        this.fecha_ingreso = fechaIngreso;
     }
 
     public List<Pedido> getPedidos() {

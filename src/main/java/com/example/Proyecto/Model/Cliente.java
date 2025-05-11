@@ -1,5 +1,6 @@
 package com.example.Proyecto.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class Cliente {
     private String correoElectronico;
 
     @OneToMany(mappedBy = "cliente")
+    @JsonIgnore
     private List<Pedido> pedidos;
 
     public Cliente() {

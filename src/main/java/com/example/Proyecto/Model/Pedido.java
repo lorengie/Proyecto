@@ -1,5 +1,7 @@
 package com.example.Proyecto.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -18,6 +20,7 @@ public class Pedido {
 
     @ManyToOne
     @JoinColumn(name = "empleado_id")
+    @JsonIgnore
     private Empleado empleado;
 
     @Column(name = "fecha_pedido")
