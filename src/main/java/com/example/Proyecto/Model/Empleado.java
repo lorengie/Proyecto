@@ -23,7 +23,6 @@ public class Empleado {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate fecha_ingreso;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "empleado")
     @JsonManagedReference
     private List<Pedido> pedidos;

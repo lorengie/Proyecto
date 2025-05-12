@@ -2,6 +2,7 @@ package com.example.Proyecto.Model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -10,18 +11,27 @@ import java.util.List;
 @Entity
 @Table(name = "pedidos")
 public class Pedido {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pedidoId;
 
+    @OneToMany(mappedBy = "pedido")
+    @JsonManagedReference
+    private List<DetallePedido> detalles;
+
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
+    @JsonBackReference
     private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(name = "empleado_id")
-    @JsonIgnore
+    @JsonBackReference
     private Empleado empleado;
+
+    @OneToMany(mappedBy = "pedido")
+    @JsonManagedReference
+    private List<Pago> pagos;
+
 
     @Column(name = "fecha_pedido")
     private LocalDate fechaPedido;
@@ -30,9 +40,6 @@ public class Pedido {
     private LocalDate fechaEntregaEstimada;
 
     private String estado;
-
-    @OneToMany(mappedBy = "pedido")
-    private List<DetallePedido> detalles;
 
     @OneToOne(mappedBy = "pedido")
     private Pago pago;

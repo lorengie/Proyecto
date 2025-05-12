@@ -1,5 +1,7 @@
 package com.example.Proyecto.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -12,9 +14,11 @@ public class DetallePedido {
     private Long detalleId;
 
     @ManyToOne
-    @JoinColumn(name = "pedido_id")
+    @JsonBackReference
     private Pedido pedido;
 
+    @OneToMany(mappedBy = "detallePedido")
+    @JsonManagedReference
     private String prenda;
     private String descripcion;
     private Integer cantidad;

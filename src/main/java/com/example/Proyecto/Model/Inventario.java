@@ -1,5 +1,6 @@
 package com.example.Proyecto.Model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -25,6 +26,7 @@ public class Inventario {
     private LocalDate fechaUltimaActualizacion;
 
     @OneToMany(mappedBy = "inventario")
+    @JsonManagedReference
     private List<MaterialUsado> materialesUsados;
 
     public Inventario() {

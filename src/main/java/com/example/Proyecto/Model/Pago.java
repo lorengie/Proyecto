@@ -1,5 +1,6 @@
 package com.example.Proyecto.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -10,6 +11,8 @@ public class Pago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pagoId;
+    @ManyToOne
+    @JsonBackReference
 
     @OneToOne
     @JoinColumn(name = "pedido_id")
