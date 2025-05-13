@@ -16,9 +16,6 @@ public class DetallePedido {
     @ManyToOne
     @JsonBackReference
     private Pedido pedido;
-
-    @OneToMany(mappedBy = "detallePedido")
-    @JsonManagedReference
     private String prenda;
     private String descripcion;
     private Integer cantidad;

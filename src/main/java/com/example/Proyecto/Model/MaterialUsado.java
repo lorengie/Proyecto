@@ -15,11 +15,6 @@ public class MaterialUsado {
     @ManyToOne
     @JoinColumn(name = "detalle_id")
     private DetallePedido detallePedido;
-
-
-    @ManyToOne
-    @JoinColumn(name = "inventario_id")
-
     @Column(name = "cantidad_usada")
     private Integer cantidadUsada;
 
