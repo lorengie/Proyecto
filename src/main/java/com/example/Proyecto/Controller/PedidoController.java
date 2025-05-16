@@ -28,4 +28,8 @@ public class PedidoController {
     @DeleteMapping("/{id}") public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id); return ResponseEntity.noContent().build();
     }
+    @GetMapping("/estado/{estado}")
+    public List<Pedido> getByEstado(@PathVariable String estado) {
+        return service.findByEstado(estado);
+    }
 }

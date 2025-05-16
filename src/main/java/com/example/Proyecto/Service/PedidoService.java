@@ -16,4 +16,7 @@ public class PedidoService {
     public Pedido save(Pedido p) { return repo.save(p); }
     public Pedido findById(Long id) { return repo.findById(id).orElse(null); }
     public void delete(Long id) { repo.deleteById(id); }
+    public List<Pedido> findByEstado(String estado) {
+        return repo.findByEstado(estado);
+    }
 }

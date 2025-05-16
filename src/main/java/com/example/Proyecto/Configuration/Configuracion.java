@@ -14,7 +14,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.List;
 
 @Configuration
-
 public class Configuracion {
     @Bean (name="customCorsConfiguracion")
     public WebMvcConfigurer corsConfigurer() {
@@ -23,7 +22,7 @@ public class Configuracion {
 
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://ip")
+                        .allowedOrigins("http://10.51.200.85/")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);

@@ -1,10 +1,8 @@
 package com.example.Proyecto.Controller;
 
 import com.example.Proyecto.Model.Empleado;
-import com.example.Proyecto.Repository.EmpleadoRepository;
 import com.example.Proyecto.Service.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +28,7 @@ public class EmpleadoController {
     }
     @PutMapping("/{id}") public ResponseEntity<Empleado> update(@PathVariable Long id, @RequestBody Empleado e) {
         if (service.findById(id) == null) return ResponseEntity.notFound().build();
-        e.setEmpleadoId(id); return ResponseEntity.ok(service.save(e));
+        e.setEmpleado_Id(id); return ResponseEntity.ok(service.save(e));
     }
     @DeleteMapping("/{id}") public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id); return ResponseEntity.noContent().build();

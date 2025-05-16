@@ -1,8 +1,8 @@
 package com.example.Proyecto.Model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -11,6 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "empleados")
 public class Empleado {
+    @JsonProperty("empleado_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long empleadoId;
@@ -19,12 +20,12 @@ public class Empleado {
     private String rol;
     private String telefono;
 
-    @Column(name = "fecha_ingreso")
+    @JsonProperty("fecha_ingreso")
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate fecha_ingreso;
+    private LocalDate fechaIngreso;
 
     @OneToMany(mappedBy = "empleado")
-    @JsonManagedReference
+    @JsonManagedReference(value = "empleado-pedidos")
     private List<Pedido> pedidos;
 
     public Empleado() {
@@ -35,16 +36,16 @@ public class Empleado {
         this.nombre = nombre;
         this.rol = rol;
         this.telefono = telefono;
-        this.fecha_ingreso = fecha_ingreso;
+        this.fechaIngreso = fechaIngreso;
         this.pedidos = pedidos;
     }
 
-    public Long getEmpleadoId() {
+    public Long getEmpleado_Id() {
         return empleadoId;
     }
 
-    public void setEmpleadoId(Long empleadoId) {
-        this.empleadoId = empleadoId;
+    public void setEmpleado_Id(Long empleadoId) {
+        this.empleadoId = this.empleadoId;
     }
 
     public String getNombre() {
@@ -71,12 +72,12 @@ public class Empleado {
         this.telefono = telefono;
     }
 
-    public LocalDate getfecha_ingreso() {
-        return fecha_ingreso;
+    public LocalDate getfechaIngreso() {
+        return fechaIngreso;
     }
 
-    public void setfecha_ingreso(LocalDate fechaIngreso) {
-        this.fecha_ingreso = fechaIngreso;
+    public void setfechaIngreso(LocalDate fechaIngreso) {
+        this.fechaIngreso  = fechaIngreso;
     }
 
     public List<Pedido> getPedidos() {

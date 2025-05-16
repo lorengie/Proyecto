@@ -21,11 +21,13 @@ public class Pedido {
     private List<DetallePedido> detalles;
 
     @ManyToOne
-    @JsonBackReference
+    @JoinColumn(name = "cliente_id")
+    @JsonBackReference(value = "cliente-pedidos")
     private Cliente cliente;
 
     @ManyToOne
-    @JsonBackReference
+    @JoinColumn(name = "empleado_id")
+    @JsonBackReference(value = "empleado-pedidos")
     private Empleado empleado;
 
     @OneToMany(mappedBy = "pedido")

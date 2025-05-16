@@ -20,7 +20,7 @@ public class Cliente {
     private String correoElectronico;
 
     @OneToMany(mappedBy = "cliente")
-    @JsonManagedReference
+    @JsonManagedReference(value = "cliente-pedidos")
     private List<Pedido> pedidos;
 
     public Cliente() {
