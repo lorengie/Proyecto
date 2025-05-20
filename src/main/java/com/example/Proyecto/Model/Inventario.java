@@ -25,6 +25,7 @@ public class Inventario {
     @Column(name = "foto_url")
     private String fotoUrl;
 
+
     @OneToMany(mappedBy = "inventario")
     @JsonManagedReference
     private List<MaterialUsado> materialesUsados;
