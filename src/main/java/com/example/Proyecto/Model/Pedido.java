@@ -16,21 +16,21 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pedidoId;
 
-    @OneToMany(mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<DetallePedido> detalles;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "cliente_id")
     @JsonBackReference(value = "cliente-pedidos")
     private Cliente cliente;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "empleado_id")
     @JsonBackReference(value = "empleado-pedidos")
     private Empleado empleado;
 
-    @OneToMany(mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedido",cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Pago> pagos;
 
@@ -43,7 +43,7 @@ public class Pedido {
 
     private String estado;
 
-    @OneToOne(mappedBy = "pedido")
+    @OneToOne(mappedBy = "pedido",cascade = CascadeType.ALL)
     private Pago pago;
 
 
