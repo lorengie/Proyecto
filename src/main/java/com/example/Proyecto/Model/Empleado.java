@@ -40,11 +40,11 @@ public class Empleado {
         this.pedidos = pedidos;
     }
 
-    public Long getEmpleado_Id() {
+    public Long getempleadoId() {
         return empleadoId;
     }
 
-    public void setEmpleado_Id(Long empleadoId) {
+    public void setempleadoId(Long empleadoId) {
         this.empleadoId = this.empleadoId;
     }
 

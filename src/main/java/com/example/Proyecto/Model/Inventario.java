@@ -22,8 +22,8 @@ public class Inventario {
     @Column(name = "unidad_medida")
     private String unidadMedida;
 
-    @Column(name = "fecha_ultima_actualizacion")
-    private LocalDate fechaUltimaActualizacion;
+    @Column(name = "foto_url")
+    private String fotoUrl;
 
     @OneToMany(mappedBy = "inventario")
     @JsonManagedReference
@@ -32,13 +32,13 @@ public class Inventario {
     public Inventario() {
     }
 
-    public Inventario(Long inventarioId, String nombreArticulo, String descripcion, Integer cantidad, String unidadMedida, LocalDate fechaUltimaActualizacion, List<MaterialUsado> materialesUsados) {
+    public Inventario(Long inventarioId, String nombreArticulo, String descripcion, Integer cantidad, String unidadMedida, String fotoUrl, List<MaterialUsado> materialesUsados) {
         this.inventarioId = inventarioId;
         this.nombreArticulo = nombreArticulo;
         this.descripcion = descripcion;
         this.cantidad = cantidad;
         this.unidadMedida = unidadMedida;
-        this.fechaUltimaActualizacion = fechaUltimaActualizacion;
+        this.fotoUrl = fotoUrl;
         this.materialesUsados = materialesUsados;
     }
 
@@ -82,12 +82,12 @@ public class Inventario {
         this.unidadMedida = unidadMedida;
     }
 
-    public LocalDate getFechaUltimaActualizacion() {
-        return fechaUltimaActualizacion;
+    public String getFotoUrl() {
+        return fotoUrl;
     }
 
-    public void setFechaUltimaActualizacion(LocalDate fechaUltimaActualizacion) {
-        this.fechaUltimaActualizacion = fechaUltimaActualizacion;
+    public void setfotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
     }
 
     public List<MaterialUsado> getMaterialesUsados() {
