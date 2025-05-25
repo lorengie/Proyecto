@@ -28,7 +28,7 @@ public class EmpleadoController {
     }
     @PutMapping("/{id}") public ResponseEntity<Empleado> update(@PathVariable Long id, @RequestBody Empleado e) {
         if (service.findById(id) == null) return ResponseEntity.notFound().build();
-        e.setempleadoId(id); return ResponseEntity.ok(service.save(e));
+        e.setEmpleadoId(id);; return ResponseEntity.ok(service.save(e));
     }
     @DeleteMapping("/{id}") public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id); return ResponseEntity.noContent().build();

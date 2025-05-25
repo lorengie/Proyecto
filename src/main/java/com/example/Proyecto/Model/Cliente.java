@@ -1,11 +1,14 @@
 package com.example.Proyecto.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "detalles", "pagos", "pedidos"})
 @Table(name = "clientes")
 public class Cliente {
     @Id
@@ -15,12 +18,10 @@ public class Cliente {
     private String nombre;
     private String telefono;
     private String direccion;
-
-    @Column(name = "correo_electronico")
     private String correoElectronico;
 
-    @OneToMany(mappedBy = "cliente")
-    @JsonManagedReference(value = "cliente-pedidos")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Pedido> pedidos;
 
     public Cliente() {

@@ -22,7 +22,7 @@ public class Configuracion {
 
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://10.51.201.143/")
+                        .allowedOrigins("http://192.168.xx.xx/")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);

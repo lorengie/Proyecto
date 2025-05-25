@@ -20,14 +20,12 @@ public class Pedido {
     @JsonManagedReference
     private List<DetallePedido> detalles;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id")
-    @JsonBackReference(value = "cliente-pedidos")
     private Cliente cliente;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "empleado_id")
-    @JsonBackReference(value = "empleado-pedidos")
     private Empleado empleado;
 
     @OneToMany(mappedBy = "pedido",cascade = CascadeType.ALL)
@@ -35,7 +33,6 @@ public class Pedido {
     private List<Pago> pagos;
 
 
-    @Column(name = "fecha_pedido")
     private LocalDate fechaPedido;
 
     @Column(name = "fecha_entrega_estimada")
@@ -50,14 +47,15 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(Long pedidoId, Cliente cliente, Empleado empleado, LocalDate fechaPedido, LocalDate fechaEntregaEstimada, String estado, List<DetallePedido> detalles, Pago pago) {
+    public Pedido(Long pedidoId, List<DetallePedido> detalles, Cliente cliente, Empleado empleado, List<Pago> pagos, LocalDate fechaPedido, LocalDate fechaEntregaEstimada, String estado, Pago pago) {
         this.pedidoId = pedidoId;
+        this.detalles = detalles;
         this.cliente = cliente;
         this.empleado = empleado;
+        this.pagos = pagos;
         this.fechaPedido = fechaPedido;
         this.fechaEntregaEstimada = fechaEntregaEstimada;
         this.estado = estado;
-        this.detalles = detalles;
         this.pago = pago;
     }
 
@@ -67,6 +65,14 @@ public class Pedido {
 
     public void setPedidoId(Long pedidoId) {
         this.pedidoId = pedidoId;
+    }
+
+    public List<DetallePedido> getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(List<DetallePedido> detalles) {
+        this.detalles = detalles;
     }
 
     public Cliente getCliente() {
@@ -83,6 +89,14 @@ public class Pedido {
 
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
+    }
+
+    public List<Pago> getPagos() {
+        return pagos;
+    }
+
+    public void setPagos(List<Pago> pagos) {
+        this.pagos = pagos;
     }
 
     public LocalDate getFechaPedido() {
@@ -107,14 +121,6 @@ public class Pedido {
 
     public void setEstado(String estado) {
         this.estado = estado;
-    }
-
-    public List<DetallePedido> getDetalles() {
-        return detalles;
-    }
-
-    public void setDetalles(List<DetallePedido> detalles) {
-        this.detalles = detalles;
     }
 
     public Pago getPago() {

@@ -12,6 +12,7 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
+
     public List<Cliente> listarTodos() {
         return clienteRepository.findAll();
     }

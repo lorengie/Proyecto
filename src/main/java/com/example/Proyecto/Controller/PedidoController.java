@@ -15,7 +15,10 @@ public class PedidoController {
     @Autowired
     private PedidoService service;
 
-    @GetMapping public List<Pedido> getAll() { return service.findAll(); }
+    @GetMapping
+    public List<Pedido> listar() {
+        return service.obtenerPedidosCompletos();
+    }
     @PostMapping public Pedido create(@RequestBody Pedido p) { return service.save(p); }
     @GetMapping("/{id}") public ResponseEntity<Pedido> getById(@PathVariable Long id) {
         Pedido p = service.findById(id);

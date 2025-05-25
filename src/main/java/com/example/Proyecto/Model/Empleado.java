@@ -1,17 +1,15 @@
 package com.example.Proyecto.Model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "detalles", "pagos", "pedidos"})
 @Table(name = "empleados")
 public class Empleado {
-    @JsonProperty("empleado_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long empleadoId;
@@ -19,14 +17,14 @@ public class Empleado {
     private String nombre;
     private String rol;
     private String telefono;
-
-    @JsonProperty("fecha_ingreso")
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    private String fotoUrl;
     private LocalDate fechaIngreso;
 
-    @OneToMany(mappedBy = "empleado")
-    @JsonManagedReference(value = "empleado-pedidos")
+    @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Pedido> pedidos;
+
+
 
     public Empleado() {
     }
@@ -40,11 +38,11 @@ public class Empleado {
         this.pedidos = pedidos;
     }
 
-    public Long getempleadoId() {
+    public Long getEmpleadoId() {
         return empleadoId;
     }
 
-    public void setempleadoId(Long empleadoId) {
+    public void setEmpleadoId(Long empleadoId) {
         this.empleadoId = this.empleadoId;
     }
 
@@ -54,6 +52,17 @@ public class Empleado {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    public String getFotoUrl() {
+        return fotoUrl;
+    }
+
+    public void setFotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
+    }
+
+    public LocalDate getFechaIngreso() {
+        return fechaIngreso;
     }
 
     public String getRol() {
@@ -72,13 +81,9 @@ public class Empleado {
         this.telefono = telefono;
     }
 
-    public LocalDate getfechaIngreso() {
-        return fechaIngreso;
-    }
 
-    public void setfechaIngreso(LocalDate fechaIngreso) {
-        this.fechaIngreso  = fechaIngreso;
-    }
+
+
 
     public List<Pedido> getPedidos() {
         return pedidos;
