@@ -23,13 +23,13 @@ public class PedidoService {
     public List<Pedido> findAll() { return repo.findAll(); }
 
     public Pedido save(Pedido p) {
-        // Validar campos obligatorios
+
         if (p.getFechaPedido() == null || p.getFechaEntregaEstimada() == null ||
                 p.getEstado() == null || p.getEstado().isEmpty()) {
             throw new IllegalArgumentException("Datos del pedido incompletos");
         }
 
-        // Validar y cargar relaciones
+
         if (p.getCliente() != null && p.getCliente().getClienteId() != null) {
             Cliente c = clienteRepo.findById(p.getCliente().getClienteId())
                     .orElseThrow(() -> new IllegalArgumentException("Cliente no encontrado"));

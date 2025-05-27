@@ -25,15 +25,15 @@ public class Empleado {
     private List<Pedido> pedidos;
 
 
-
     public Empleado() {
     }
 
-    public Empleado(Long empleadoId, String nombre, String rol, String telefono, LocalDate fechaIngreso, List<Pedido> pedidos) {
+    public Empleado(Long empleadoId, String nombre, String rol, String telefono, String fotoUrl, LocalDate fechaIngreso, List<Pedido> pedidos) {
         this.empleadoId = empleadoId;
         this.nombre = nombre;
         this.rol = rol;
         this.telefono = telefono;
+        this.fotoUrl = fotoUrl;
         this.fechaIngreso = fechaIngreso;
         this.pedidos = pedidos;
     }
@@ -43,7 +43,7 @@ public class Empleado {
     }
 
     public void setEmpleadoId(Long empleadoId) {
-        this.empleadoId = this.empleadoId;
+        this.empleadoId = empleadoId;
     }
 
     public String getNombre() {
@@ -52,17 +52,6 @@ public class Empleado {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-    public String getFotoUrl() {
-        return fotoUrl;
-    }
-
-    public void setFotoUrl(String fotoUrl) {
-        this.fotoUrl = fotoUrl;
-    }
-
-    public LocalDate getFechaIngreso() {
-        return fechaIngreso;
     }
 
     public String getRol() {
@@ -81,9 +70,21 @@ public class Empleado {
         this.telefono = telefono;
     }
 
+    public String getFotoUrl() {
+        return fotoUrl;
+    }
 
+    public void setFotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
+    }
 
+    public LocalDate getFechaIngreso() {
+        return fechaIngreso;
+    }
 
+    public void setFechaIngreso(LocalDate fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
 
     public List<Pedido> getPedidos() {
         return pedidos;

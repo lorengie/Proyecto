@@ -19,8 +19,12 @@ public class PedidoController {
     public List<Pedido> listar() {
         return service.obtenerPedidosCompletos();
     }
-    @PostMapping public Pedido create(@RequestBody Pedido p) { return service.save(p); }
+    @PostMapping
+    public Pedido create(@RequestBody Pedido p) {
+        return service.save(p);
+    }
     @GetMapping("/{id}") public ResponseEntity<Pedido> getById(@PathVariable Long id) {
+
         Pedido p = service.findById(id);
         return p != null ? ResponseEntity.ok(p) : ResponseEntity.notFound().build();
     }

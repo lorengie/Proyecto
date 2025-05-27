@@ -17,6 +17,7 @@ public class Pago {
     @OneToOne
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
+    private String metodo;
 
     private Double monto;
 
@@ -26,19 +27,26 @@ public class Pago {
     @Column(name = "forma_pago")
     private String formaPago;
 
-    @Column(name = "nombre_persona_que_pago")
-    private String nombrePersonaQuePago;
+
 
     public Pago() {
     }
 
-    public Pago(Long pagoId, Pedido pedido, Double monto, LocalDate fechaPago, String formaPago, String nombrePersonaQuePago) {
+    public Pago(Long pagoId, Pedido pedido, String metodo, Double monto, LocalDate fechaPago, String formaPago) {
         this.pagoId = pagoId;
         this.pedido = pedido;
+        this.metodo = metodo;
         this.monto = monto;
         this.fechaPago = fechaPago;
         this.formaPago = formaPago;
-        this.nombrePersonaQuePago = nombrePersonaQuePago;
+    }
+
+    public String getMetodo() {
+        return metodo;
+    }
+
+    public void setMetodo(String metodo) {
+        this.metodo = metodo;
     }
 
     public Long getPagoId() {
@@ -81,11 +89,5 @@ public class Pago {
         this.formaPago = formaPago;
     }
 
-    public String getNombrePersonaQuePago() {
-        return nombrePersonaQuePago;
-    }
 
-    public void setNombrePersonaQuePago(String nombrePersonaQuePago) {
-        this.nombrePersonaQuePago = nombrePersonaQuePago;
-    }
 }

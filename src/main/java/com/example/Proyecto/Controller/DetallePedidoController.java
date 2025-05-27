@@ -10,22 +10,29 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/detallepedido")
+@RequestMapping("/api/detalles")
 public class DetallePedidoController {
     @Autowired
     private DetallePedidoService service;
 
-    @GetMapping public List<DetallePedido> getAll() { return service.findAll(); }
-    @PostMapping public DetallePedido create(@RequestBody DetallePedido d) { return service.save(d); }
-    @GetMapping("/{id}") public ResponseEntity<DetallePedido> getById(@PathVariable Long id) {
-        DetallePedido d = service.findById(id);
-        return d != null ? ResponseEntity.ok(d) : ResponseEntity.notFound().build();
+    @GetMapping("/pedido/{pedidoId}")
+    public List<DetallePedido> porPedido(@PathVariable Long pedidoId) {
+        return service.listarPorPedido(pedidoId);
     }
-    @PutMapping("/{id}") public ResponseEntity<DetallePedido> update(@PathVariable Long id, @RequestBody DetallePedido d) {
-        if (service.findById(id) == null) return ResponseEntity.notFound().build();
-        d.setDetalleId(id); return ResponseEntity.ok(service.save(d));
+
+    @PostMapping
+    public DetallePedido crear(@RequestBody DetallePedido detalle) {
+        return service.guardar(detalle);
     }
-    @DeleteMapping("/{id}") public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id); return ResponseEntity.noContent().build();
+
+    @PutMapping("/{id}")
+    public DetallePedido actualizar(@PathVariable Long id, @RequestBody DetallePedido detalle) {
+        detalle.setDetalleId(id);
+        return service.guardar(detalle);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id) {
+        service.eliminar(id);
     }
 }
