@@ -24,8 +24,7 @@ public class Pago {
     @Column(name = "fecha_pago")
     private LocalDate fechaPago;
 
-    @Column(name = "forma_pago")
-    private String formaPago;
+
 
 
 
@@ -38,7 +37,7 @@ public class Pago {
         this.metodo = metodo;
         this.monto = monto;
         this.fechaPago = fechaPago;
-        this.formaPago = formaPago;
+
     }
 
     public String getMetodo() {
@@ -81,13 +80,6 @@ public class Pago {
         this.fechaPago = fechaPago;
     }
 
-    public String getFormaPago() {
-        return formaPago;
-    }
-
-    public void setFormaPago(String formaPago) {
-        this.formaPago = formaPago;
-    }
 
 
 }
