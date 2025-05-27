@@ -11,41 +11,27 @@ public class Pago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pagoId;
-    @ManyToOne
-    @JsonBackReference
 
-    @OneToOne
-    @JoinColumn(name = "pedido_id")
-    private Pedido pedido;
+
     private String metodo;
-
+    private LocalDate fechaPago;
     private Double monto;
 
-    @Column(name = "fecha_pago")
-    private LocalDate fechaPago;
-
-
-
+    @ManyToOne
+    @JoinColumn(name = "pedido_id")
+    @JsonBackReference
+    private Pedido pedido;
 
 
     public Pago() {
     }
 
-    public Pago(Long pagoId, Pedido pedido, String metodo, Double monto, LocalDate fechaPago, String formaPago) {
+    public Pago(Long pagoId, String metodo, LocalDate fechaPago, Double monto, Pedido pedido) {
         this.pagoId = pagoId;
-        this.pedido = pedido;
         this.metodo = metodo;
-        this.monto = monto;
         this.fechaPago = fechaPago;
-
-    }
-
-    public String getMetodo() {
-        return metodo;
-    }
-
-    public void setMetodo(String metodo) {
-        this.metodo = metodo;
+        this.monto = monto;
+        this.pedido = pedido;
     }
 
     public Long getPagoId() {
@@ -56,20 +42,12 @@ public class Pago {
         this.pagoId = pagoId;
     }
 
-    public Pedido getPedido() {
-        return pedido;
+    public String getMetodo() {
+        return metodo;
     }
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
-
-    public Double getMonto() {
-        return monto;
-    }
-
-    public void setMonto(Double monto) {
-        this.monto = monto;
+    public void setMetodo(String metodo) {
+        this.metodo = metodo;
     }
 
     public LocalDate getFechaPago() {
@@ -80,6 +58,19 @@ public class Pago {
         this.fechaPago = fechaPago;
     }
 
+    public Double getMonto() {
+        return monto;
+    }
 
+    public void setMonto(Double monto) {
+        this.monto = monto;
+    }
 
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
 }

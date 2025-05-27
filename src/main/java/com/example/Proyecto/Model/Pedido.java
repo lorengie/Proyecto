@@ -40,14 +40,12 @@ public class Pedido {
 
     private String estado;
 
-    @OneToOne(mappedBy = "pedido",cascade = CascadeType.ALL)
-    private Pago pago;
 
 
     public Pedido() {
     }
 
-    public Pedido(Long pedidoId, List<DetallePedido> detalles, Cliente cliente, Empleado empleado, List<Pago> pagos, LocalDate fechaPedido, LocalDate fechaEntregaEstimada, String estado, Pago pago) {
+    public Pedido(Long pedidoId, List<DetallePedido> detalles, Cliente cliente, Empleado empleado, List<Pago> pagos, LocalDate fechaPedido, LocalDate fechaEntregaEstimada, String estado) {
         this.pedidoId = pedidoId;
         this.detalles = detalles;
         this.cliente = cliente;
@@ -56,7 +54,6 @@ public class Pedido {
         this.fechaPedido = fechaPedido;
         this.fechaEntregaEstimada = fechaEntregaEstimada;
         this.estado = estado;
-        this.pago = pago;
     }
 
     public Long getPedidoId() {
@@ -123,11 +120,5 @@ public class Pedido {
         this.estado = estado;
     }
 
-    public Pago getPago() {
-        return pago;
-    }
 
-    public void setPago(Pago pago) {
-        this.pago = pago;
-    }
 }
